@@ -23,11 +23,17 @@ public class MinutesWheel extends Wheel {
             displayValues.add(format.format(cal.getTime()));
             cal.add(Calendar.MINUTE, pickerView.minuteInterval);
         }
-
-        picker.setMinValue(0);
-        picker.setMaxValue(0);
-        picker.setDisplayedValues(values.toArray(new String[0]));
-        picker.setMaxValue(displayValues.size() - 1);
+        if ( pickerView.minuteInterval >= 15 ) {
+            picker.setMaxValue(0);
+            picker.setDisplayedValues(displayValues.toArray(new String[0]));
+            picker.setMinValue(0);
+            picker.setMaxValue(displayValues.size() - 1);        
+        } else {
+            picker.setMinValue(0);
+            picker.setMaxValue(0);
+            picker.setDisplayedValues(values.toArray(new String[0]));
+            picker.setMaxValue(displayValues.size() - 1);
+        }
     }
 
     @Override
